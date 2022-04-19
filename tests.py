@@ -2,16 +2,18 @@ import time
 import pytest
 import re
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
-PATH = "C:\Program Files (x86)\chromedriver.exe"                # Chromedriver path
+path = '../../../../../Program Files (x86)/chromedriver.exe'    # Chromedriver path
 screen_resolution = [1382, 744]                                 # px
-wait_before_action = 1                                          # Increase this time if there are unxedpected errors
+wait_before_action = 1.5                                        # Increase this time if there are unexpected errors
 dell_pc_name = "Dell i7 8gb"
 
 class Test():
   def setup_method(self, method):
-    self.driver = webdriver.Chrome(PATH)
+    s = Service(path)
+    self.driver = webdriver.Chrome(service=s)
     self.vars = {}
     self._preconditions()
 
